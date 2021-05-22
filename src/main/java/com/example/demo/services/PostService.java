@@ -51,11 +51,15 @@ public class PostService {
         return this.postRepository.findAllByOrderByCreatedDateDesc();
     }
 
-    public Post getPostById(UUID postId, Principal principal) {
+    public Post getPostByIdAndUser(UUID postId, Principal principal) {
         User user = this.userService.getCurrentUser(principal);
         return this.postRepository
                 .findPostByIdAndUser(postId, user)
                 .orElseThrow(() -> new PostNotFoundException(String.format("Post cannot be found for %s", user.getEmail())));
+    }
+
+    public Post getPostById(UUID postId) {
+        return this.postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException("Post cannot be found."));
     }
 
     public List<Post> getPostsForUser(Principal principal) {
@@ -83,7 +87,7 @@ public class PostService {
     }
 
     public void deletePost(UUID postId, Principal principal) {
-        Post post = getPostById(postId, principal);
+        Post post = getPostByIdAndUser(postId, principal);
         Optional<Image> image = this.imageService.findByPostId(post.getId());
         this.postRepository.delete(post);
         image.ifPresent(this.imageService::delete);
