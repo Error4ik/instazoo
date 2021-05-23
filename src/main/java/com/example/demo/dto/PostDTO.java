@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 import java.util.UUID;
 
@@ -7,11 +8,15 @@ public class PostDTO {
 
     private UUID id;
 
+    @NotEmpty
     private String title;
 
+    @NotEmpty
     private String caption;
 
     private String location;
+
+    private String username;
 
     private int numberOfLikes;
 
@@ -50,6 +55,14 @@ public class PostDTO {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getNumberOfLikes() {
