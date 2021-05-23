@@ -2,7 +2,6 @@ package com.example.demo.controllers;
 
 import com.example.demo.dto.CommentDTO;
 import com.example.demo.entity.Comment;
-import com.example.demo.entity.Post;
 import com.example.demo.facade.CommentFacade;
 import com.example.demo.payload.response.MessageResponse;
 import com.example.demo.services.CommentService;
@@ -22,6 +21,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/comment")
+@CrossOrigin
 public class CommentController {
 
     private final CommentService commentService;
