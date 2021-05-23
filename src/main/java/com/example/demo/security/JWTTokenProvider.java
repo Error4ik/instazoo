@@ -7,10 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Component
 public class JWTTokenProvider {
@@ -52,8 +49,10 @@ public class JWTTokenProvider {
     }
 
     public UUID getUserIdFromToken(String token) {
-        Claims claims = Jwts.parser().setSigningKey(SecurityConstants.SECRET).parseClaimsJwt(token).getBody();
-        String id = (String) claims.get("id");
+        Claims claims = Jwts.parser().setSigningKey(SecurityConstants.SECRET).parseClaimsJws(token).getBody();
+        Map<String, String> map = (Map<String, String>) claims.get("id");
+        String id = map.get("id");
+
         return UUID.fromString(id);
     }
 }
