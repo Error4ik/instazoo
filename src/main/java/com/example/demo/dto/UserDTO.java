@@ -13,6 +13,8 @@ public class UserDTO {
     @NotEmpty
     private String surname;
 
+    private String name;
+
     private String biography;
 
     public UserDTO() {
@@ -42,6 +44,14 @@ public class UserDTO {
         this.surname = surname;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getBiography() {
         return biography;
     }
@@ -56,6 +66,7 @@ public class UserDTO {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", surname='" + surname + '\'' +
+                ", name='" + name + '\'' +
                 ", biography='" + biography + '\'' +
                 '}';
     }
