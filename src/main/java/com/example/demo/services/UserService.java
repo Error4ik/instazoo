@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -58,6 +59,10 @@ public class UserService {
 
     public User getCurrentUser(Principal principal) {
         return this.getUserByPrincipal(principal);
+    }
+
+    public User getUserById(UUID userId) {
+        return this.userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     private User getUserByPrincipal(Principal principal) {

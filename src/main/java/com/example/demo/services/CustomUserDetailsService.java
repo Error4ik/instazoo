@@ -32,7 +32,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public User loadUserById(UUID id) {
-        return this.userRepository.findUserById(id).orElse(null);
+        return this.userRepository.findById(id).orElse(null);
     }
 
     public static User build(User user) {
