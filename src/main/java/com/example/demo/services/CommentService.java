@@ -24,7 +24,7 @@ public class CommentService {
 
     private final PostService postService;
 
-    protected final UserService userService;
+    private final UserService userService;
 
     @Autowired
     public CommentService(CommentRepository commentRepository, PostService postService, UserService userService) {

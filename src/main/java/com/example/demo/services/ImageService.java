@@ -30,13 +30,11 @@ public class ImageService {
 
     private final ImageRepository imageRepository;
     private final UserService userService;
-    private final PostService postService;
 
     @Autowired
-    public ImageService(ImageRepository imageRepository, UserService userService, PostService postService) {
+    public ImageService(ImageRepository imageRepository, UserService userService) {
         this.imageRepository = imageRepository;
         this.userService = userService;
-        this.postService = postService;
     }
 
     public Optional<Image> findByPostId(UUID postId) {
@@ -91,7 +89,7 @@ public class ImageService {
 
     public Image getImageToPost(UUID postId) {
         Image image = this.imageRepository.findByPostId(postId)
-                .orElseThrow(() -> new ImageNotFoundException(String.format("Cannot find image to Post: %s" , postId)));
+                .orElseThrow(() -> new ImageNotFoundException(String.format("Cannot find image to Post: %s", postId)));
 
         if (!ObjectUtils.isEmpty(image)) {
             image.setImageBytes(this.decompressBytes(image.getImageBytes()));
