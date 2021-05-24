@@ -1,6 +1,5 @@
 package com.example.demo.annotations;
 
-import com.example.demo.validations.EmailValidator;
 import com.example.demo.validations.PasswordMatchesValidator;
 
 import javax.validation.Constraint;
