@@ -6,7 +6,6 @@ import java.util.UUID;
 public class CommentDTO {
     private UUID id;
 
-    @NotEmpty
     private String username;
 
     @NotEmpty

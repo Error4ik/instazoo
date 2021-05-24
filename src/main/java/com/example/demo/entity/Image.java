@@ -18,7 +18,7 @@ public class Image {
     @Column(nullable = false)
     private String name;
 
-    @Column(columnDefinition = "oid")
+    @Column(columnDefinition = "bytea")
     private byte[] imageBytes;
 
     @JsonIgnore

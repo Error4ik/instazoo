@@ -82,6 +82,6 @@ public class PostController {
     public ResponseEntity<MessageResponse> deletePost(@PathVariable("postId") String postId, Principal principal) {
         this.postService.deletePost(UUID.fromString(postId), principal);
 
-        return new ResponseEntity<>(new MessageResponse("{ost was deleted."), HttpStatus.OK);
+        return new ResponseEntity<>(new MessageResponse("Post was deleted."), HttpStatus.OK);
     }
 }
