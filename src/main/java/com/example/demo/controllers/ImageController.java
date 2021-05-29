@@ -26,33 +26,33 @@ public class ImageController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<MessageResponse> uploadImageToUser(
+    public ResponseEntity<MessageResponse> uploadImageForUser(
             @RequestParam("file") MultipartFile file, Principal principal) throws IOException {
 
-        this.imageService.uploadImageToUser(file, principal);
+        this.imageService.uploadImageForUser(file, principal);
 
         return new ResponseEntity<>(new MessageResponse("Image Uploaded Successfully."), HttpStatus.OK);
     }
 
     @PostMapping("/{postId}/upload")
-    public ResponseEntity<MessageResponse> uploadImageToPost(
+    public ResponseEntity<MessageResponse> uploadImageForPost(
             @PathVariable("postId") String postId, @RequestParam("file") MultipartFile file, Principal principal) throws IOException {
 
-        this.imageService.uploadImageToPost(file, principal, UUID.fromString(postId));
+        this.imageService.uploadImageForPost(file, principal, UUID.fromString(postId));
 
         return new ResponseEntity<>(new MessageResponse("Image Uploaded Successfully."), HttpStatus.OK);
     }
 
     @GetMapping("/profile-image")
-    public ResponseEntity<Image> getImageToUser(Principal principal) {
-        Image image = this.imageService.getImageToUser(principal);
+    public ResponseEntity<Image> getImageByUser(Principal principal) {
+        Image image = this.imageService.getImageByUser(principal);
 
         return new ResponseEntity<>(image, HttpStatus.OK);
     }
 
     @GetMapping("/{postId}/post-image")
-    public ResponseEntity<Image> getImageToPost(@PathVariable("postId") String postId) {
-        Image image = this.imageService.getImageToPost(UUID.fromString(postId));
+    public ResponseEntity<Image> getImageByPost(@PathVariable("postId") String postId) {
+        Image image = this.imageService.getImageByPost(UUID.fromString(postId));
 
         return new ResponseEntity<>(image, HttpStatus.OK);
     }

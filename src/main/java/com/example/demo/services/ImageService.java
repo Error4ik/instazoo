@@ -45,7 +45,7 @@ public class ImageService {
         this.imageRepository.delete(image);
     }
 
-    public Image uploadImageToUser(MultipartFile multipartFile, Principal principal) throws IOException {
+    public Image uploadImageForUser(MultipartFile multipartFile, Principal principal) throws IOException {
         User user = this.userService.getCurrentUser(principal);
         LOGGER.info("Uploading image profile to User {}", user.getName());
 
@@ -62,7 +62,7 @@ public class ImageService {
         return this.imageRepository.save(image);
     }
 
-    public Image uploadImageToPost(MultipartFile multipartFile, Principal principal, UUID postId) throws IOException {
+    public Image uploadImageForPost(MultipartFile multipartFile, Principal principal, UUID postId) throws IOException {
         User user = this.userService.getCurrentUser(principal);
         Post post = user.getPostList().stream().filter(p -> p.getId().equals(postId)).collect(this.toSinglePostCollector());
 
@@ -75,7 +75,7 @@ public class ImageService {
         return this.imageRepository.save(image);
     }
 
-    public Image getImageToUser(Principal principal) {
+    public Image getImageByUser(Principal principal) {
         User user = this.userService.getCurrentUser(principal);
 
         Image image = this.imageRepository.findByUserId(user.getId()).orElse(null);
@@ -87,7 +87,7 @@ public class ImageService {
         return image;
     }
 
-    public Image getImageToPost(UUID postId) {
+    public Image getImageByPost(UUID postId) {
         Image image = this.imageRepository.findByPostId(postId)
                 .orElseThrow(() -> new ImageNotFoundException(String.format("Cannot find image to Post: %s", postId)));
 
