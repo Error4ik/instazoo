@@ -14,7 +14,7 @@ public class PostFacade {
         postDTO.setLocation(post.getLocation());
         postDTO.setUsername(post.getUser().getName());
         postDTO.setNumberOfLikes(post.getNumberOfLikes());
-        postDTO.setUsersLiked(post.getLikedUsers());
+        postDTO.setLikedUsers(post.getLikedUsers());
         return postDTO;
     }
 }

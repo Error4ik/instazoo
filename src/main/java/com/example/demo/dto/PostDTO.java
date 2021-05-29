@@ -20,7 +20,7 @@ public class PostDTO {
 
     private int numberOfLikes;
 
-    private Set<String> usersLiked;
+    private Set<String> likedUsers;
 
     public PostDTO() {
     }
@@ -73,11 +73,11 @@ public class PostDTO {
         this.numberOfLikes = numberOfLikes;
     }
 
-    public Set<String> getUsersLiked() {
-        return usersLiked;
+    public Set<String> getLikedUsers() {
+        return likedUsers;
     }
 
-    public void setUsersLiked(Set<String> usersLiked) {
-        this.usersLiked = usersLiked;
+    public void setLikedUsers(Set<String> likedUsers) {
+        this.likedUsers = likedUsers;
     }
 }
